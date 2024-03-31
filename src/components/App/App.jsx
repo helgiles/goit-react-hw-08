@@ -4,6 +4,8 @@ import Layout from '../Layout/Layout.jsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { refreshUser } from '../../redux/auth/operations.js';
 import { selectIsRefreshing } from '../../redux/auth/selectors.js';
+import { RestrictedRoute } from '../RestrictedRoute/RestrictedRoute.jsx';
+import { PrivateRoute } from '../PrivateRoute/PrivateRoute.jsx';
 
 const HomePage = lazy(() => import('../pages/Home/Home.jsx'));
 const RegisterPage = lazy(() => import('../pages/Register/Register.jsx'));
@@ -26,46 +28,36 @@ export default function App() {
         <Suspense fallback={null}>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/contacts" element={<ContactsPage />} />
+            <Route
+              path="/register"
+              element={
+                <RestrictedRoute
+                  component={<RegisterPage />}
+                  // redirectTo="/tasks"
+                />
+              }
+            />
+            <Route
+              path="/login"
+              element={
+                <RestrictedRoute
+                  component={<LoginPage />}
+                  redirectTo="/contacts"
+                />
+              }
+            />
+            <Route
+              path="/contacts"
+              element={
+                <PrivateRoute
+                  component={<ContactsPage />}
+                  redirectTo="/login"
+                />
+              }
+            />
           </Routes>
         </Suspense>
       )}
     </Layout>
   );
 }
-
-// import './App.css';
-// import { useEffect } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { fetchContacts } from '../../redux/contactsOps';
-// import { selectError, selectLoading } from '../../redux/contactsSlice';
-// import Loader from '../Loader/Loader';
-// import ErrorMessage from '../ErrorMessage/ErrorMessage';
-// import ContactForm from '../ContactForm/ContactForm';
-// import SearchBox from '../SearchBox/SearchBox';
-// import ContactList from '../ContactList/ContactList';
-
-// function App() {
-//   const dispatch = useDispatch();
-//   const loading = useSelector(selectLoading);
-//   const error = useSelector(selectError);
-
-//   useEffect(() => {
-//     dispatch(fetchContacts());
-//   }, [dispatch]);
-
-//   return (
-//     <div>
-//       <h1 className="header">Phonebook</h1>
-//       <ContactForm />
-//       <SearchBox />
-//       {error && <ErrorMessage />}
-//       {loading && <Loader />}
-//       <ContactList />
-//     </div>
-//   );
-// }
-
-// export default App;
