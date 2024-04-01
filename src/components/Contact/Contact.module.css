@@ -20,7 +20,14 @@
   gap: 8px;
 }
 
-.delete {
+.buttonsGroupe {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.button {
   width: 90px;
   height: 44px;
 }
