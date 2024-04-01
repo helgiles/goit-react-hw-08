@@ -25,7 +25,7 @@ export default function Contact({
 
       <div className={css.buttonsGroupe}>
         <button className={css.button} onClick={openContactModal}>
-          Edit
+          delete
         </button>
         <button
           className={css.button}
