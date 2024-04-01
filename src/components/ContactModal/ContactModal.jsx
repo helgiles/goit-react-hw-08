@@ -1,17 +1,29 @@
 import Modal from 'react-modal';
 import css from './ContactModal.module.css';
+import { useDispatch } from 'react-redux';
+import { deleteContact } from '../../redux/contacts/operations';
 
 Modal.setAppElement('#root');
 
-export default function ContactModal({ button, isOpen, onClose }) {
+export default function ContactModal({ id, isOpen, onClose }) {
+  const dispatch = useDispatch();
+
   return (
     <Modal
       className={css.overlay}
       isOpen={isOpen}
-      onClick={event => event.stopPropagation()}
+      onClick={onClose}
       onRequestClose={onClose}
     >
-      <div className={css.content}>{button && <div>Delete contact?</div>}</div>
+      <div className={css.content} onClick={event => event.stopPropagation()}>
+        <p>Delete contact?</p>
+        <button
+          className={css.button}
+          onClick={() => dispatch(deleteContact(id))}
+        >
+          Delete
+        </button>
+      </div>
     </Modal>
   );
 }

@@ -1,14 +1,19 @@
+import { useState } from 'react';
 import { FaUser } from 'react-icons/fa';
 import { FaPhoneAlt } from 'react-icons/fa';
-import { useDispatch } from 'react-redux';
-import { deleteContact } from '../../redux/contacts/operations';
+import ContactModal from '../../components/ContactModal/ContactModal';
 import css from './Contact.module.css';
 
-export default function Contact({
-  data: { id, name, number },
-  openContactModal,
-}) {
-  const dispatch = useDispatch();
+export default function Contact({ data: { id, name, number } }) {
+  const [showContactModal, setShowContactModal] = useState(false);
+
+  const openContactModal = () => {
+    setShowContactModal(true);
+  };
+
+  const closeContactModal = () => {
+    setShowContactModal(false);
+  };
 
   return (
     <div className={css.contact}>
@@ -24,16 +29,21 @@ export default function Contact({
       </div>
 
       <div className={css.buttonsGroupe}>
-        <button className={css.button} onClick={openContactModal}>
-          delete
-        </button>
         <button
           className={css.button}
-          onClick={() => dispatch(deleteContact(id))}
+          onClick={() => {
+            openContactModal();
+          }}
         >
           Delete
         </button>
       </div>
+
+      <ContactModal
+        id={id}
+        isOpen={showContactModal}
+        onClose={closeContactModal}
+      />
     </div>
   );
 }
