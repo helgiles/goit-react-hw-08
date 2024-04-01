@@ -3,12 +3,7 @@ import PageTitle from '../../PageTitle/PageTitle';
 export default function Home() {
   return (
     <div>
-      <PageTitle>
-        Task manager welcome page{' '}
-        <span role="img" aria-label="Greeting icon">
-          💁‍♀️
-        </span>
-      </PageTitle>
+      <PageTitle>Phone book</PageTitle>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni
         asperiores eius nobis saepe quis voluptatibus facere expedita tempora,
