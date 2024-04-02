@@ -14,7 +14,7 @@ export default function DeleteModal({ id, name, isOpen, onClose }) {
       isOpen={isOpen}
       onClick={onClose}
       onRequestClose={onClose}
-      closeModal
+      closeModal={onClose}
     >
       <div className={css.content}>
         <h3>Delete contact {name}?</h3>
