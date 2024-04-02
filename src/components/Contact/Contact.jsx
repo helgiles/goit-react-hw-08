@@ -1,18 +1,25 @@
 import { useState } from 'react';
 import { FaUser } from 'react-icons/fa';
 import { FaPhoneAlt } from 'react-icons/fa';
-import ContactModal from '../../components/ContactModal/ContactModal';
+import DeleteModal from '../DeleteModal/DeleteModal';
+import EditModal from '../EditModal/EditModal';
 import css from './Contact.module.css';
 
 export default function Contact({ data: { id, name, number } }) {
-  const [showContactModal, setShowContactModal] = useState(false);
+  const [editModal, setEditModal] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
 
-  const openContactModal = () => {
-    setShowContactModal(true);
+  const openEditModal = () => {
+    setEditModal(true);
   };
-
-  const closeContactModal = () => {
-    setShowContactModal(false);
+  const closeEditModal = () => {
+    setEditModal(false);
+  };
+  const openDeleteModal = () => {
+    setDeleteModal(true);
+  };
+  const closeDeleteModal = () => {
+    setDeleteModal(false);
   };
 
   return (
@@ -29,21 +36,30 @@ export default function Contact({ data: { id, name, number } }) {
       </div>
 
       <div className={css.buttonsGroupe}>
-        <button
-          className={css.button}
-          onClick={() => {
-            openContactModal();
-          }}
-        >
+        <button className={css.button} onClick={openEditModal}>
+          Edit
+        </button>
+        <button className={css.button} onClick={openDeleteModal}>
           Delete
         </button>
       </div>
-
-      <ContactModal
-        id={id}
-        isOpen={showContactModal}
-        onClose={closeContactModal}
-      />
+      {editModal && (
+        <EditModal
+          isOpen={openEditModal}
+          number={number}
+          name={name}
+          contactId={id}
+          onClose={closeEditModal}
+        />
+      )}
+      {deleteModal && (
+        <DeleteModal
+          isOpen={openDeleteModal}
+          id={id}
+          name={name}
+          onClose={closeDeleteModal}
+        />
+      )}
     </div>
   );
 }
