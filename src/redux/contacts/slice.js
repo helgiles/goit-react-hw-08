@@ -65,6 +65,7 @@ const contactsSlice = createSlice({
         const contactIndex = state.items.findIndex(
           item => item.id === action.payload.id
         );
+
         state.items[contactIndex] = action.payload;
       })
       .addCase(editContact.rejected, state => {
@@ -83,7 +84,6 @@ export const contactsReducer = contactsSlice.reducer;
 export const selectFilteredContacts = createSelector(
   [selectContacts, selectNameFilter],
   (contacts, nameFilter) => {
-    console.log('selectFilteredContacts');
     return contacts.filter(contact =>
       contact.name.toLowerCase().includes(nameFilter.toLowerCase())
     );

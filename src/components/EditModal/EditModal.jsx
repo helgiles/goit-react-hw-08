@@ -22,7 +22,7 @@ export default function EditModal({ id, name, number, isOpen, onClose }) {
   });
 
   const initialValues = {
-    id,
+    // id: id,
     name: name,
     number: number,
   };
@@ -31,7 +31,7 @@ export default function EditModal({ id, name, number, isOpen, onClose }) {
   const numberFieldId = nanoid();
   const dispatch = useDispatch();
 
-  const handleSubmit = (id, values, actions) => {
+  const handleSubmit = (values, actions) => {
     dispatch(
       editContact({
         id: id,
@@ -40,9 +40,6 @@ export default function EditModal({ id, name, number, isOpen, onClose }) {
       })
     );
 
-    console.log(name);
-    console.log(number);
-    console.log(actions);
     actions.resetForm();
   };
 
@@ -52,7 +49,7 @@ export default function EditModal({ id, name, number, isOpen, onClose }) {
       isOpen={isOpen}
       onRequestClose={onClose}
       onClick={onClose}
-      closeModal
+      closeModal={onClose}
     >
       <div className={css.content}>
         <h3>Edit contact {name}</h3>
