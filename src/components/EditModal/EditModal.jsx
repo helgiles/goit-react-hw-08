@@ -22,7 +22,6 @@ export default function EditModal({ id, name, number, isOpen, onClose }) {
   });
 
   const initialValues = {
-    // id: id,
     name: name,
     number: number,
   };
@@ -39,8 +38,8 @@ export default function EditModal({ id, name, number, isOpen, onClose }) {
         number: values.number,
       })
     );
-
     actions.resetForm();
+    onClose();
   };
 
   return (
@@ -49,7 +48,7 @@ export default function EditModal({ id, name, number, isOpen, onClose }) {
       isOpen={isOpen}
       onRequestClose={onClose}
       onClick={onClose}
-      closeModal={onClose}
+      closeModal
     >
       <div className={css.content}>
         <h3>Edit contact {name}</h3>
