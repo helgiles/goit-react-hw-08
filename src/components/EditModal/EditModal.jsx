@@ -22,7 +22,7 @@ export default function EditModal({ id, name, number, isOpen, onClose }) {
   });
 
   const initialValues = {
-    id: id,
+    id,
     name: name,
     number: number,
   };
@@ -31,14 +31,18 @@ export default function EditModal({ id, name, number, isOpen, onClose }) {
   const numberFieldId = nanoid();
   const dispatch = useDispatch();
 
-  const handleSubmit = (values, actions) => {
+  const handleSubmit = (id, values, actions) => {
     dispatch(
       editContact({
+        id: id,
         name: values.name,
         number: values.number,
       })
     );
-    console.log(values);
+
+    console.log(name);
+    console.log(number);
+    console.log(actions);
     actions.resetForm();
   };
 
@@ -50,8 +54,8 @@ export default function EditModal({ id, name, number, isOpen, onClose }) {
       onClick={onClose}
       closeModal
     >
-      <div className={css.content} onClick={event => event.stopPropagation()}>
-        <h3>Edit contact {name}?</h3>
+      <div className={css.content}>
+        <h3>Edit contact {name}</h3>
         <Formik
           initialValues={initialValues}
           onSubmit={handleSubmit}
@@ -59,7 +63,7 @@ export default function EditModal({ id, name, number, isOpen, onClose }) {
         >
           <Form className={css.form}>
             <div className={css.field}>
-              <label htmlFor={nameFieldId}></label>
+              <label htmlFor={nameFieldId}>Name</label>
               <Field type="text" name="name" id={nameFieldId} />
               <ErrorMessage
                 className={css.error}
@@ -69,7 +73,7 @@ export default function EditModal({ id, name, number, isOpen, onClose }) {
             </div>
 
             <div className={css.field}>
-              <label htmlFor={numberFieldId}></label>
+              <label htmlFor={numberFieldId}>Number</label>
               <Field type="text" name="number" id={numberFieldId} />
               <ErrorMessage
                 className={css.error}

@@ -46,9 +46,9 @@ export default function Contact({ data: { id, name, number } }) {
       {editModal && (
         <EditModal
           isOpen={openEditModal}
-          number={number}
+          id={id}
           name={name}
-          contactId={id}
+          number={number}
           onClose={closeEditModal}
         />
       )}
