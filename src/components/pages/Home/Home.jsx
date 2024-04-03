@@ -3,7 +3,7 @@ import PageTitle from '../../PageTitle/PageTitle';
 export default function Home() {
   return (
     <div>
-      <PageTitle>Phone book</PageTitle>
+      <PageTitle>Phonebook</PageTitle>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni
         asperiores eius nobis saepe quis voluptatibus facere expedita tempora,

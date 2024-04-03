@@ -9,7 +9,7 @@ import ContactList from '../../ContactList/ContactList';
 import { fetchContacts } from '../../../redux/contacts/operations';
 import { selectLoading } from '../../../redux/contacts/selectors';
 import { selectError } from '../../../redux/contacts/selectors';
-
+import css from './Contacts.module.css';
 export default function Contacts() {
   const dispatch = useDispatch();
   const loading = useSelector(selectLoading);
@@ -20,7 +20,7 @@ export default function Contacts() {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className={css.contacts}>
       <PageTitle>Your contacts</PageTitle>
       <ContactForm />
       <SearchBox />

@@ -6,12 +6,14 @@
   align-items: center;
   border: 1px solid rgb(131, 131, 131);
   border-radius: 8px;
+  width: 500px;
 }
 
 .field {
   display: flex;
   flex-direction: column;
   align-items: start;
+  /* width: 360px; */
 }
 
 .button {

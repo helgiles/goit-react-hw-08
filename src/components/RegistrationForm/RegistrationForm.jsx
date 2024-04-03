@@ -1,12 +1,22 @@
 import { useDispatch } from 'react-redux';
 import { Formik, Form, Field } from 'formik';
 import { register } from '../../redux/auth/operations';
+import { toast } from 'react-hot-toast';
 import css from './RegistrationForm.module.css';
 
 export default function RegistrationForm() {
   const dispatch = useDispatch();
 
   const handleSubmit = (values, actions) => {
+    if (
+      !values.name.trim() ||
+      !values.email.trim() ||
+      !values.password.trim()
+    ) {
+      return toast.error('Please fill out all required fields');
+    } else if (values.password.length < 7) {
+      return toast.error('The password should be least at 7 characters long');
+    }
     dispatch(register(values));
     actions.resetForm();
   };

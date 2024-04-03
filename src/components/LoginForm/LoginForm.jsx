@@ -1,12 +1,16 @@
 import { Formik, Form, Field } from 'formik';
 import { useDispatch } from 'react-redux';
 import { login } from '../../redux/auth/operations';
+import { toast } from 'react-hot-toast';
 import css from './LoginForm.module.css';
 
 export default function LoginForm() {
   const dispatch = useDispatch();
 
   const handleSubmit = (values, actions) => {
+    if (!values.email.trim() || !values.password.trim()) {
+      return toast.error('Not all fields are filled in!');
+    }
     dispatch(login(values));
     actions.resetForm();
   };
