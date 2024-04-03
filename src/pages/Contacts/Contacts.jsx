@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import PageTitle from '../../PageTitle/PageTitle';
-import ContactForm from '../../ContactForm/ContactForm';
-import SearchBox from '../../SearchBox/SearchBox';
-import ErrorMessage from '../../ErrorMessage/ErrorMessage';
-import Loader from '../../Loader/Loader';
-import ContactList from '../../ContactList/ContactList';
-import { fetchContacts } from '../../../redux/contacts/operations';
-import { selectLoading } from '../../../redux/contacts/selectors';
-import { selectError } from '../../../redux/contacts/selectors';
+import PageTitle from '../../components/PageTitle/PageTitle';
+import ContactForm from '../../components/ContactForm/ContactForm';
+import SearchBox from '../../components/SearchBox/SearchBox';
+import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
+import Loader from '../../components/Loader/Loader';
+import ContactList from '../../components/ContactList/ContactList';
+import { fetchContacts } from '../../redux/contacts/operations';
+import { selectLoading } from '../../redux/contacts/selectors';
+import { selectError } from '../../redux/contacts/selectors';
 import css from './Contacts.module.css';
 export default function Contacts() {
   const dispatch = useDispatch();

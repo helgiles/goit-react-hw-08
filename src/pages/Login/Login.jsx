@@ -1,5 +1,5 @@
-import LoginForm from '../../LoginForm/LoginForm';
-import PageTitle from '../../PageTitle/PageTitle';
+import LoginForm from '../../components/LoginForm/LoginForm';
+import PageTitle from '../../components/PageTitle/PageTitle';
 import { Link } from 'react-router-dom';
 import css from './Login.module.css';
 
